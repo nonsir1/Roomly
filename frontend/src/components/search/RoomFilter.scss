@@ -1,0 +1,273 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+
+.room-filter-inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .input-wrapper {
+        position: relative;
+        background: white;
+        border-radius: $border-radius;
+        border: 1px solid color.mix(white, $text-secondary, 30%);
+        min-height: 42px; // Фиксированная высота для всех полей
+        display: flex;
+        align-items: center;
+        transition: all 0.2s;
+
+        @media (max-width: #{$breakpoint-sm - 1px}) {
+            min-height: 38px;
+        }
+
+        &:focus-within {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+        }
+
+        &.search-wrapper {
+            flex: 1;
+            min-width: 200px;
+
+            @media (max-width: #{$breakpoint-md - 1px}) {
+                min-width: 150px;
+            }
+
+            @media (max-width: #{$breakpoint-sm - 1px}) {
+                min-width: 100%;
+                order: 1;
+            }
+            
+            .icon {
+                position: absolute;
+                left: 10px;
+                color: $text-secondary;
+                font-size: 1.2rem;
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    font-size: 1.1rem;
+                    left: 8px;
+                }
+            }
+
+            .filter-input {
+                width: 100%;
+                border: none;
+                background: transparent;
+                padding: 0.6rem 1rem 0.6rem 2.5rem;
+                height: 100%;
+                border-radius: $border-radius;
+                outline: none;
+                font-family: inherit;
+                font-size: 0.95rem;
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    font-size: 0.9rem;
+                    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+                }
+            }
+        }
+
+        &.tags-wrapper {
+            flex: 1;
+            min-width: 250px;
+            cursor: pointer;
+
+            @media (max-width: #{$breakpoint-lg - 1px}) {
+                min-width: 200px;
+            }
+
+            @media (max-width: #{$breakpoint-md - 1px}) {
+                min-width: 150px;
+            }
+
+            @media (max-width: #{$breakpoint-sm - 1px}) {
+                min-width: 100%;
+                order: 2;
+            }
+            
+            .tags-input-area {
+                width: 100%;
+                height: 100%;
+                padding: 4px 30px 4px 10px;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    padding: 4px 28px 4px 8px;
+                }
+
+                .placeholder {
+                    color: $text-secondary;
+                    font-size: 0.95rem;
+
+                    @media (max-width: #{$breakpoint-sm - 1px}) {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .selected-tags {
+                    display: flex;
+                    gap: 4px;
+                    overflow-x: auto;
+                    scrollbar-width: none; // Firefox
+                    &::-webkit-scrollbar { display: none; } // Chrome
+                }
+
+                .arrow {
+                    position: absolute;
+                    right: 10px;
+                    color: $text-secondary;
+
+                    @media (max-width: #{$breakpoint-sm - 1px}) {
+                        right: 8px;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+
+            .tags-dropdown {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                margin-top: 4px;
+                background: white;
+                border: 1px solid color.mix(white, $text-secondary, 30%);
+                border-radius: $border-radius;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                z-index: 50;
+                max-height: 250px;
+                overflow-y: auto;
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    max-height: 200px;
+                }
+
+                .dropdown-item {
+                    padding: 0.5rem 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    cursor: pointer;
+                    font-size: 0.9rem;
+
+                    @media (max-width: #{$breakpoint-sm - 1px}) {
+                        padding: 0.45rem 0.75rem;
+                        font-size: 0.85rem;
+                    }
+
+                    &:hover { background-color: $bg-light; }
+                    &.selected { color: $primary-color; font-weight: 500; }
+                    
+                    .check { 
+                        font-size: 1.1rem;
+
+                        @media (max-width: #{$breakpoint-sm - 1px}) {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.time-wrapper {
+            background: transparent; // Убираем фон у контейнера
+            border: none; // Убираем бордер у контейнера
+            padding: 0;
+            gap: 0.5rem;
+            box-shadow: none !important; // Отключаем тень фокуса
+
+            @media (max-width: #{$breakpoint-sm - 1px}) {
+                width: 100%;
+                order: 3;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+            }
+
+            .filter-input {
+                background: white;
+                border: 1px solid color.mix(white, $text-secondary, 30%);
+                border-radius: $border-radius;
+                padding: 0 0.5rem;
+                height: 42px; // Такая же высота как у других
+                font-family: inherit;
+                color: $text-main;
+                font-size: 0.9rem;
+                outline: none;
+
+                @media (max-width: #{$breakpoint-md - 1px}) {
+                    font-size: 0.85rem;
+                    padding: 0 0.4rem;
+                }
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    height: 38px;
+                    font-size: 0.85rem;
+                }
+
+                &:focus {
+                    border-color: $primary-color;
+                    box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+                }
+
+                &.date-input { 
+                    width: 130px;
+
+                    @media (max-width: #{$breakpoint-md - 1px}) {
+                        width: 120px;
+                    }
+
+                    @media (max-width: #{$breakpoint-sm - 1px}) {
+                        width: 48%;
+                    }
+                }
+
+                &.time-input { 
+                    width: 90px;
+
+                    @media (max-width: #{$breakpoint-md - 1px}) {
+                        width: 80px;
+                    }
+
+                    @media (max-width: #{$breakpoint-sm - 1px}) {
+                        width: 48%;
+                    }
+                }
+            }
+
+            .separator { 
+                color: $text-secondary;
+
+                @media (max-width: #{$breakpoint-sm - 1px}) {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    // Кнопка поиска по высоте как инпуты
+    button[type="submit"] {
+        height: 42px;
+
+        @media (max-width: #{$breakpoint-sm - 1px}) {
+            height: 38px;
+            width: 100%;
+            order: 4;
+            margin-top: 0.25rem;
+        }
+    }
+}

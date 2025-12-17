@@ -1,0 +1,61 @@
+// Цветовая палитра
+$primary-color: #4f46e5; // Indigo 600
+$primary-hover: #4338ca; // Indigo 700
+$secondary-color: #10b981; // Emerald 500
+$text-main: #1f2937; // Gray 800
+$text-secondary: #6b7280; // Gray 500
+$bg-light: #f3f4f6; // Gray 100
+$bg-white: #ffffff;
+$danger: #ef4444; // Red 500
+
+// Шрифты
+$font-family: 'Inter', system-ui, -apple-system, sans-serif;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+// Breakpoints для адаптивности
+$breakpoint-xs: 320px;   // Минимальный размер телефона
+$breakpoint-sm: 576px;   // Маленькие телефоны
+$breakpoint-md: 768px;   // Планшеты
+$breakpoint-lg: 992px;   // Ноутбуки
+$breakpoint-xl: 1200px;  // Десктопы
+$breakpoint-xxl: 1400px; // Большие экраны
+$breakpoint-xxxl: 2560px; // Максимальный размер
+
+// Миксины для медиа-запросов
+@mixin mobile-only {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-up {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-and-up {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin extra-large-desktop {
+  @media (min-width: $breakpoint-xxl) {
+    @content;
+  }
+}
+

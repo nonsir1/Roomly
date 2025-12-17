@@ -1,0 +1,88 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  width: 100%;
+
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    margin-bottom: 1.35rem;
+  }
+
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    margin-bottom: 1.25rem;
+  }
+
+  .input-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $text-main;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  .input-field {
+    padding: 0.75rem 1rem;
+    border: 1px solid color.mix(white, $text-secondary, 30%);
+    border-radius: $border-radius;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: white;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      padding: 0.65rem 0.9rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      padding: 0.6rem 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+
+      @media (max-width: #{$breakpoint-sm - 1px}) {
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+      }
+    }
+
+    &::placeholder {
+      color: color.mix(white, $text-secondary, 20%);
+    }
+  }
+
+  &--error {
+    .input-field {
+      border-color: $danger;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba($danger, 0.1);
+
+        @media (max-width: #{$breakpoint-sm - 1px}) {
+          box-shadow: 0 0 0 2px rgba($danger, 0.1);
+        }
+      }
+    }
+
+    .input-error {
+      margin-top: 0.25rem;
+      font-size: 0.85rem;
+      color: $danger;
+
+      @media (max-width: #{$breakpoint-sm - 1px}) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+

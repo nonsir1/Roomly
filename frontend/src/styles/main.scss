@@ -1,0 +1,55 @@
+@use 'variables' as *;
+@use 'reset';
+
+// Глобальные классы
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: $breakpoint-xxl) {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    padding: 0 0.75rem;
+  }
+
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    padding: 0 0.5rem;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: $border-radius;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background-color: $primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: white;
+    border: 1px solid $text-secondary;
+    color: $text-main;
+
+    &:hover {
+      background-color: $bg-light;
+    }
+  }
+}
+

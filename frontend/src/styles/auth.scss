@@ -1,0 +1,109 @@
+@use 'variables' as *;
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $bg-light;
+  padding: 1rem;
+
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    padding: 0.75rem;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0.5rem;
+  }
+}
+
+.auth-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    padding: 2rem;
+    max-width: 420px;
+  }
+
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    padding: 1.75rem;
+    max-width: 380px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .auth-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-main;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      font-size: 1.6rem;
+    }
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 400px) {
+      font-size: 1.35rem;
+    }
+  }
+
+  .auth-subtitle {
+    color: $text-secondary;
+    margin-bottom: 2rem;
+
+    @media (max-width: #{$breakpoint-md - 1px}) {
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .auth-form {
+    text-align: left;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .auth-footer {
+    font-size: 0.9rem;
+    color: $text-secondary;
+
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+      font-size: 0.85rem;
+    }
+
+    a {
+      color: $primary-color;
+      font-weight: 500;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.w-full {
+    width: 100%;
+}
+
