@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  passwordHash  String
+  role          String    @default("user")
+  bookings      Booking[]
+
+  @@map("users")
+}
+
+model Feature {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  rooms Room[]
+
+  @@map("features")
+}
+
+model Room {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  capacity    Int
+  imageUrl    String?
+  features    Feature[]
+  bookings    Booking[]
+
+  @@map("rooms")
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  roomId    Int
+  startTime DateTime
+  endTime   DateTime
+  title     String?
+  user      User     @relation(fields: [userId], references: [id])
+  room      Room     @relation(fields: [roomId], references: [id])
+
+  @@map("bookings")
+}
+
+model Setting {
+  id    Int     @id @default(autoincrement())
+  key   String  @unique
+  value String
+  
+  @@map("settings")
+}
+
